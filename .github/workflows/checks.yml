@@ -16,4 +16,4 @@ jobs:
       - name: flake8 Lint
         uses: py-actions/flake8@v2
         with:
-          args: "--max-line-length=100 --exclude .ipython app/core/migrations --ignore E266,W503,E203,E722"
+          args: "--max-line-length=100 --exclude .ipython, app/core/migrations --ignore E266,W503,E203,E722"
