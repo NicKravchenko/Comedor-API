@@ -1,8 +1,6 @@
 """
 Views for restaurant managment api
 """
-from drf_spectacular.utils import extend_schema
-
 
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication

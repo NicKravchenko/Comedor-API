@@ -1,4 +1,4 @@
-""" 
+"""
 URL mappings for restaurant managment app
 """
 from django.urls import (
