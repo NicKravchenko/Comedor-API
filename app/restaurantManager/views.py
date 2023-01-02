@@ -48,6 +48,7 @@ class DishView(viewsets.ModelViewSet):
         """Show only restaurants of a person"""
         return self.queryset.filter(user=self.request.user).order_by('-id')
 
+
 class DishOfRestaurantView( mixins.ListModelMixin,
                             viewsets.GenericViewSet):
     """Vieqw for manage restaurant management api"""
