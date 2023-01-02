@@ -1,6 +1,8 @@
 """
 Views for restaurant managment api
 """
+from drf_spectacular.utils import extend_schema
+
 
 from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
@@ -22,7 +24,7 @@ class RestaurantCRUDView(viewsets.ModelViewSet):
     queryset = Restaurant.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
@@ -30,13 +32,6 @@ class RestaurantCRUDView(viewsets.ModelViewSet):
         """Show only restaurants of a person"""
         return self.queryset.filter(user=self.request.user).order_by('-id')
     
-    
-# class DishListView(
-#                    mixins.ListModelMixin,
-#                    viewsets.GenericViewSet):
-#     """Vieqw for list dishes in api"""
-#     serializer_class = serializers.DishSerializer
-#     queryset = Dish.objects.all()
     
 class DishView(viewsets.ModelViewSet):
     """Vieqw for manage restaurant management api"""
@@ -46,6 +41,24 @@ class DishView(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        """Show only restaurants of a person"""
+        return self.queryset.filter(user=self.request.user).order_by('-id')
+
+class DishOfRestaurantView( mixins.ListModelMixin,
+                            viewsets.GenericViewSet):
+    """Vieqw for manage restaurant management api"""
+    
+
+    serializer_class = serializers.DishSerializer
+    queryset = Dish.objects.all()
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
