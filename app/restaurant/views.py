@@ -37,6 +37,9 @@ class CRUDRestaurantView(mixins.CreateModelMixin,
     queryset = Restaurant.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
     def get_queryset(self):
         """Show only restaurants of a person"""

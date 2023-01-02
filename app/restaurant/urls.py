@@ -12,9 +12,8 @@ from restaurant import views
 
 router = DefaultRouter()
 
-router.register('restaurants', views.ListRestaurantView)
-router.register('restaurants', views.CRUDRestaurantView)
-
+router.register('list', views.ListRestaurantView)
+router.register('', views.CRUDRestaurantView)
 app_name = 'restaurant'
 
 urlpatterns = [
