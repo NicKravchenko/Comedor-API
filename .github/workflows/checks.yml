@@ -18,4 +18,5 @@ jobs:
         with:
           args: "--max-line-length=100 --exclude .ipython,app/core/migrations --ignore E266,W503,E203,E722"
       - name: Unit Test
+        working-directory: ./app
         run: python manage.py test
