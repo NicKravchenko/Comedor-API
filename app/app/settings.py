@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_spectacular',
     'rest_framework',
+    'rest_framework.authtoken',
     'core',
+    'user',
+    'restaurantManager',
 ]
 
 MIDDLEWARE = [
@@ -129,4 +132,5 @@ AUTH_USER_MODEL = 'core.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'SCHEMA_PATH_PREFIX': '/api/'
 }
