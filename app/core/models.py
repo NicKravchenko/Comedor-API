@@ -68,6 +68,7 @@ class Dish(models.Model):
     name = models.CharField(max_length=255)
     category = models.CharField(max_length=255)
     ingredients = models.CharField(max_length=255)
+    
     restaurant = models.ForeignKey(
         Restaurant,
         on_delete=models.CASCADE)
