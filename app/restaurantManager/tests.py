@@ -165,7 +165,8 @@ class DishManagmentTests(TestCase):
             owner restaurant not work but to owners yes"""
         new_user = create_user(
             email='newuser@example.com',
-            password='password')
+            password='password'
+        )
         restaurant1 = create_restaurant(user=self.user)
         restaurant2 = create_restaurant(user=new_user)
         payload1 = {
