@@ -7,6 +7,7 @@ from rest_framework import status
 
 CREATE_USER_URL = reverse('user:create')
 TOKEN_URL = reverse('user:token')
+ME_URL = reverse('user:me')
 
 
 def create_user(**kargs):
@@ -136,3 +137,43 @@ class AuthorizedUserAPITests(TestCase):
 
     def setUp(self):
         self.client = APIClient()
+        user_data = {
+            'email': 'user@example.com',
+            'password': 'password',
+            'name': 'name',
+        }
+        self.user = create_user(**user_data)
+        self.client.force_authenticate(user=self.user)
+
+    def test_obtain_my_info(self):
+        """Test for retrieve logged user's info"""
+        res = self.client.get(ME_URL)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data, {
+            'email': 'user@example.com',
+            'name': 'name',
+        })
+
+    def test_post_me_not_allowed(self):
+        """Check that its not allowed to post in me url"""
+        res = self.client.post(ME_URL, {})
+
+        self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_patch_user_info(self):
+        """Test for retrieve logged user's info"""
+        payload = {
+                    'email': 'newuser@example.com',
+                    'password': 'newpassword',
+                    'name': 'newname',
+                }
+
+        res = self.client.patch(ME_URL, payload)
+
+        self.user.refresh_from_db()
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(self.user.email, payload['email'])
+        self.assertEqual(self.user.name, payload['name'])
+        self.assertTrue(self.user.check_password(payload['password']))
