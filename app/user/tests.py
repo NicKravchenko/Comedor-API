@@ -164,10 +164,10 @@ class AuthorizedUserAPITests(TestCase):
     def test_patch_user_info(self):
         """Test for retrieve logged user's info"""
         payload = {
-                    'email': 'newuser@example.com',
-                    'password': 'newpassword',
-                    'name': 'newname',
-                }
+            'email': 'newuser@example.com',
+            'password': 'newpassword',
+            'name': 'newname',
+        }
 
         res = self.client.patch(ME_URL, payload)
 
