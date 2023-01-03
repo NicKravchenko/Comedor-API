@@ -161,13 +161,12 @@ class DishManagmentTests(TestCase):
         self.assertEqual(res.data['name'], payload['name'])
 
     def test_assign_dish_not_to_owners_restaurant(self):
-        """Test assign dish to others owner restaurant not work but to owners yes"""
+        """Test assign dish to other \\
+            owner restaurant not work but to owners yes"""
         new_user = create_user(
             email='newuser@example.com', password='password')
-
         restaurant1 = create_restaurant(user=self.user)
         restaurant2 = create_restaurant(user=new_user)
-
         payload1 = {
             'name': 'name',
             'category': 'location',
