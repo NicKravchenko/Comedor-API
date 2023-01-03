@@ -12,10 +12,8 @@ from restaurantManager import views
 
 router = DefaultRouter()
 
-router.register('restaurant', views.RestaurantCRUDView,
-                basename='restaurant-crud')
-router.register('restaurant-list', views.RestaurantListView,
-                basename='restaurant-list')
+router.register('restaurant', views.RestaurantCRUDView)
+# router.register('restaurants', views.RestaurantListView)
 
 router.register('dish', views.DishView)
 app_name = 'restaurantManager'
