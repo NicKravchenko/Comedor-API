@@ -8,8 +8,11 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
-router.register('restaurant', RestaurantListView)
-router.register('restaurant-dish', DishOfRestaurantView)
+router.register(r'restaurant', RestaurantListView)
+router.register(r'restaurant-dishes',
+                DishOfRestaurantView,
+                basename='restaurant-dishes'
+                )
 
 app_name = 'consumer'
 

@@ -13,7 +13,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['id', 'name', 'location', 'work_hours']
-        read_only_fields = ['id']
+        read_only_fields = ['name']
 
 
 class RestaurantDishSerializer(serializers.ModelSerializer):
@@ -22,4 +22,4 @@ class RestaurantDishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
         fields = ['id', 'name', 'category', 'ingredients', 'restaurant']
-        read_only_fields = ['id']
+        read_only_fields = ['name']

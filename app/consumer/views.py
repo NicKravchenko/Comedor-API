@@ -4,11 +4,11 @@ Views for consumers
 from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
-    OpenApiParameter,
-    OpenApiTypes
+    OpenApiParameter
 )
+from drf_spectacular.types import OpenApiTypes
 
-from rest_framework import mixins, viewsets, generics
+from rest_framework import mixins, viewsets
 
 from core.models import Dish, Restaurant
 from consumer import serializers
@@ -49,6 +49,6 @@ class DishOfRestaurantView(mixins.ListModelMixin,
         restaurant = self.request.query_params.get('restaurant')
         queryset = self.queryset
         if restaurant:
-            queryset = queryset.filter(restaurant=restaurant).order_by('-id')
+            queryset = queryset.filter(restaurant=restaurant).order_by('-name')
 
         return queryset
